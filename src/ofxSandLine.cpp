@@ -41,20 +41,20 @@ void ofxSandLine::update(int _res){
     res = _res;
 
     points = makeSpline(p1, p2, p3, p4, res * 4);
-
+    
     grains.clear();
 
     for(int i = 0; i < points.size()/4; i++){
         ofPoint grain_;
         grain_ = points[ofRandom(points.size())];
-        grain_ += ofVec2f(breadth * ofRandomf(),  breadth * ofRandomf());
+        grain_ += ofVec3f(breadth * ofRandomf(),  breadth * ofRandomf(), breadth * ofRandomf());
 
         grains.push_back(grain_);
     }
 
     if(mode == SAND_MODE_LINE){
-        p1 += ofVec2f(offset[0] * ofRandomf(), offset[0] * ofRandomf());
-        p4 += ofVec2f(offset[3] * ofRandomf(), offset[3] * ofRandomf());
+        p1 += ofVec3f(offset[0] * ofRandomf(), offset[0] * ofRandomf(), offset[0] * ofRandomf());
+        p4 += ofVec3f(offset[3] * ofRandomf(), offset[3] * ofRandomf(), offset[3] * ofRandomf());
 
         getMidPoints(p1, p4);
 
@@ -64,10 +64,10 @@ void ofxSandLine::update(int _res){
     }
 
     if(mode == SAND_MODE_SPLINE){
-        p1 += ofVec2f(offset[0] * ofRandomf(), offset[0] * ofRandomf());
-        p2 += ofVec2f(offset[1] * ofRandomf(), offset[1] * ofRandomf());
-        p3 += ofVec2f(offset[2] * ofRandomf(), offset[2] * ofRandomf());
-        p4 += ofVec2f(offset[3] * ofRandomf(), offset[3] * ofRandomf());
+        p1 += ofVec3f(offset[0] * ofRandomf(), offset[0] * ofRandomf(), offset[0] * ofRandomf());
+        p2 += ofVec3f(offset[1] * ofRandomf(), offset[1] * ofRandomf(), offset[1] * ofRandomf());
+        p3 += ofVec3f(offset[2] * ofRandomf(), offset[2] * ofRandomf(), offset[2] * ofRandomf());
+        p4 += ofVec3f(offset[3] * ofRandomf(), offset[3] * ofRandomf(), offset[3] * ofRandomf());
     }
 
 }
@@ -119,7 +119,7 @@ void ofxSandLine::draw(int _res){
 
     for(int i = 0; i<grains.size(); i++){
         ofSetColor(color, ofRandom(maxAlpha));
-        ofDrawCircle(grains[i].x, grains[i].y, ofRandom(maxSize));
+        ofDrawCircle(grains[i].x, grains[i].y, grains[i].z, ofRandom(maxSize));
     }
 }
 
