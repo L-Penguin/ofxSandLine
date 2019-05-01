@@ -18,6 +18,8 @@ public:
 
     void draw(int _res);
 
+    void update(int _res);
+    
     void setOffset(float _offset);
     void setOffset(float _o0, float _o1, float _o2, float _o3);
     void setBreadth(float _breadth);
@@ -31,10 +33,8 @@ public:
     void setPoint(int _index, ofPoint _p);
 
 private:
-    int res;
+    int res=100;
     vector<ofPoint> grains;
-
-    void update(int _res);
 
     ofPoint p1, p2, p3, p4;
     float offset [4];

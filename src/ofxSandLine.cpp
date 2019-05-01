@@ -115,11 +115,12 @@ vector<ofPoint> ofxSandLine::getPoints(){
 //------------------------------------------------
 void ofxSandLine::draw(int _res){
 
-    update(_res);
+    // update(_res);
 
     for(int i = 0; i<grains.size(); i++){
+        int size = ofMap(cos(ofGetElapsedTimeMillis() / 150), -1, 1, 0, 5);
         ofSetColor(color, ofRandom(maxAlpha));
-        ofDrawCircle(grains[i].x, grains[i].y, grains[i].z, ofRandom(maxSize));
+        ofDrawCircle(grains[i].x, grains[i].y, grains[i].z, size);
     }
 }
 
